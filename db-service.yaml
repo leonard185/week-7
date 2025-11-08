@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: shop
+  labels:
+    app: db
+    app.kubernetes.io/part-of: cart-app
+spec:
+  type: ClusterIP
+  selector:
+    app: db
+  ports:
+    - name: pg
+      port: 5432
+      targetPort: 5432
