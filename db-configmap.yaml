@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-init
+  namespace: shop
+data:
+  init-cart.sql: |
+    CREATE TABLE IF NOT EXISTS cart_items (
+      id SERIAL PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      sku TEXT NOT NULL,
+      qty INT NOT NULL,
+      added_at TIMESTAMPTZ DEFAULT NOW()
+    );
+    INSERT INTO cart_items (user_id, sku, qty)
+    VALUES ('demo', 'SKU-001', 3);
